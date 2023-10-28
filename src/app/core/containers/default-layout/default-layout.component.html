@@ -4,7 +4,8 @@
     <span class="header-spacer"></span>
 
 
-    <button mat-icon-button [matMenuTriggerFor]="menuLanguage" aria-label="icon-button with a language menu">
+    <button mat-icon-button [matMenuTriggerFor]="menuLanguage" aria-label="icon-button with a language menu"
+            matTooltip="{{ 'LABEL.CHANGE_LANGUAGE' | translate }}">
       <mat-icon>language</mat-icon>
     </button>
     <mat-menu #menuLanguage="matMenu">
@@ -16,7 +17,8 @@
       </button>
     </mat-menu>
 
-    <button mat-icon-button [matMenuTriggerFor]="menuSettings" aria-label="icon-button with a menu">
+    <button mat-icon-button [matMenuTriggerFor]="menuSettings" aria-label="icon-button with a menu"
+            matTooltip="{{ 'LABEL.SETTINGS' | translate }}">
       <mat-icon>settings</mat-icon>
     </button>
     <mat-menu #menuSettings="matMenu">

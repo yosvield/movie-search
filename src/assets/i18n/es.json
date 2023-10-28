@@ -25,6 +25,8 @@
   "LABEL": {
     "ACCESS_TOKEN": "Token de acceso",
     "ACCES_TOKEN_TMDB": "Token de acceso para el API de TMDb",
+    "BACK": "Regresar",
+    "CHANGE_LANGUAGE": "Cambiar idioma",
     "ENGLISH": "Inglés",
     "FIELD_REQUIRED": "Campo requerido",
     "ORIGINAL_LANGUAJE": "Lenguaje original",
@@ -32,6 +34,7 @@
     "POPULARITY": "Popularidad",
     "SAVE": "Guardar",
     "SEARCH": "buscar",
+    "SETTINGS": "Configuraciones",
     "SPANISH": "Español",
     "TOKEN": "Token",
     "VOTE_AVERAGE": "Promedio de votos",
