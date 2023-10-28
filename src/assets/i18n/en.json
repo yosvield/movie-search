@@ -3,9 +3,14 @@
     "ACCESS_TOKEN": "Access token",
     "ACCES_TOKEN_TMDB": "Access token for TMDb API",
     "FIELD_REQUIRED": "Field required",
+    "ORIGINAL_LANGUAJE": "Original language",
+    "OVERVIEW": "Overview",
+    "POPULARITY": "Popularity",
     "SAVE": "Save",
     "SEARCH": "search",
     "TOKEN": "Token",
+    "VOTE_AVERAGE": "Vote average",
+    "VOTE_COUNT": "Vote count",
     "YEAR": "year"
   }
 }

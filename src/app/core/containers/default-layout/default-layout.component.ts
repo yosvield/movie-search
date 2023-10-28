@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {Component, inject} from '@angular/core';
+import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {SharedModule} from "@shared/shared.module";
 import {App} from "../../../config/app";
 
@@ -16,5 +16,11 @@ import {App} from "../../../config/app";
 })
 export class DefaultLayoutComponent {
 
+  private _router = inject(Router);
+
   protected readonly App = App;
+
+  go(commands: any[]) {
+    this._router.navigate(commands)
+  }
 }

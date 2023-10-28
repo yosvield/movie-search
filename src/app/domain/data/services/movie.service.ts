@@ -14,4 +14,8 @@ export class MovieService {
   filter(movieFilter: MovieFilter): Observable<{ results: Movie[], page: number, total_pages: number }> {
     return this._apiSrv.get(`/search/movie`, movieFilter);
   }
+
+  get(idMovie: number): Observable<Movie> {
+    return this._apiSrv.get(`/movie/${idMovie}`);
+  }
 }

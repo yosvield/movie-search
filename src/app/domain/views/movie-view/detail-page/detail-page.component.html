@@ -1,1 +1,53 @@
-<p>detail-page works!</p>
+<button (click)="back()" mat-mini-fab color="primary" aria-label="Icon button with a back icon">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<div class="bg-img"
+     [style.background-image]="'url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces' + movie?.backdrop_path + ')'">
+  <div class="container custom_bg">
+
+    <mat-card class="poster movie-card">
+      <img mat-card-image [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie?.poster_path"
+           [alt]="movie?.title">
+    </mat-card>
+
+    <div class="detail">
+      <section class="">
+        <div class="title"><strong>{{movie?.title}}</strong>({{movie?.release_date | date : 'yyyy'}})</div>
+        <div *ngIf="movie?.title != movie?.original_title" class="title"><strong>{{movie?.original_title}}</strong>
+        </div>
+
+        <div class="facts">
+          <span class="release">{{movie?.release_date | date: 'M/d/yyyy'}}</span>
+        </div>
+
+        <div class="other-info">
+          <div>
+            <strong>{{'LABEL.ORIGINAL_LANGUAJE' | translate}}: </strong>
+            <span>{{movie?.pretty_original_language}}</span>
+          </div>
+          <div>
+            <strong>{{'LABEL.VOTE_AVERAGE' | translate}}: </strong>
+            <span>{{movie?.vote_average}}</span>
+          </div>
+          <div>
+            <strong>{{'LABEL.VOTE_COUNT' | translate}}: </strong>
+            <span>{{movie?.vote_count}}</span>
+          </div>
+          <div>
+            <strong>{{'LABEL.POPULARITY' | translate}}: </strong>
+            <span>{{movie?.popularity}}</span>
+          </div>
+        </div>
+
+        <div class="overview-container">
+          <h3><strong>{{'LABEL.OVERVIEW' | translate}}</strong></h3>
+          <div class="overview">
+            <p>{{movie?.overview}}</p>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</div>

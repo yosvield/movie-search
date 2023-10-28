@@ -4,7 +4,7 @@ import {DetailPageComponent} from "@views/movie-view/detail-page";
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id_pelicula',
     component: DetailPageComponent
   }
 ];

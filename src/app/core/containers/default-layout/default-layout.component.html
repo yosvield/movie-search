@@ -1,6 +1,6 @@
 <ng-container>
   <mat-toolbar color="primary">
-    <span>Movie search</span>
+    <span (click)="go([App.ROUTES.HOME])" class="cursor-pointer">Movie search</span>
     <span class="header-spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
       <mat-icon>settings</mat-icon>

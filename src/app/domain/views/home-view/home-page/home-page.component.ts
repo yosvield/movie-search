@@ -23,11 +23,6 @@ export class HomePageComponent implements OnInit {
   //</editor-fold>
 
   ngOnInit(): void {
-    this.movies.push(new Movie());
-    this.movies.push(new Movie());
-    this.movies.push(new Movie());
-    this.movies.push(new Movie());
-
     this._activatedRoute.queryParams.subscribe((params) => {
       this.movieFilter = Object.assign(new MovieFilter(), params);
       this._search();
@@ -39,6 +34,10 @@ export class HomePageComponent implements OnInit {
       queryParams: this.movieFilter,
       queryParamsHandling: 'merge'
     });
+  }
+
+  trackByFn(index: number, movie: Movie) {
+    return movie.id;
   }
 
   private _search() {

@@ -29,8 +29,8 @@
 </div>
 
 <div class="list-movie">
-  <ng-container *ngFor="let movie of movies">
-    <a [routerLink]="['pelicula']">
+  <ng-container *ngFor="let movie of movies; trackBy: trackByFn">
+    <a [routerLink]="['pelicula', movie.id]">
       <mat-card class="movie-card">
         <img mat-card-image [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie.poster_path"
              [alt]="movie.title">
