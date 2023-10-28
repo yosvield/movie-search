@@ -1,0 +1,21 @@
+@import "../../../../scss/variables";
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.container-body {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  max-height: 100%;
+  justify-content: center;
+
+  .body {
+    width: 100%;
+    max-width: $max-with;
+  }
+}
+
+
+
