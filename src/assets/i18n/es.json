@@ -1,8 +1,11 @@
 {
   "LABEL": {
     "ACCESS_TOKEN": "Token de acceso",
+    "ACCES_TOKEN_TMDB": "Token de acceso para el API de TMDb",
+    "FIELD_REQUIRED": "Campo requerido",
     "SAVE": "Guardar",
     "SEARCH": "buscar",
+    "TOKEN": "Token",
     "YEAR": "año"
   }
 }

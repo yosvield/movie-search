@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {RouterOutlet} from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
 import {SharedModule} from "@shared/shared.module";
+import {App} from "../../../config/app";
 
 @Component({
   selector: 'app-default-layout',
@@ -8,10 +9,12 @@ import {SharedModule} from "@shared/shared.module";
   styleUrls: ['./default-layout.component.scss'],
   imports: [
     RouterOutlet,
-    SharedModule
+    SharedModule,
+    RouterLink
   ],
   standalone: true
 })
 export class DefaultLayoutComponent {
 
+  protected readonly App = App;
 }

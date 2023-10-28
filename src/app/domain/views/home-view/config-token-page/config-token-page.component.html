@@ -1,17 +1,20 @@
-<div class="filter-container">
-  <form #formAccessToken="ngForm" (ngSubmit)="submitForm()">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <mat-form-field appearance="outline">
-        <input matInput class="form-control"
-               type="text"
-               name="token"
-               required
-               [(ngModel)]="token"
-               #query="ngModel"
-               placeholder="{{'LABEL.ACCESS_TOKEN' | translate}}"/>
-        <!--          <mat-error *ngIf="query?.errors['required']">{{'LABEL.FIELD_REQUIRED' | translate}}</mat-error>-->
-      </mat-form-field>
+<div class="container" fxLayout="column" fxLayoutAlign="space-between center">
+  <form #formAccessToken="ngForm" (ngSubmit)="submitForm()" autocomplete="off">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch">
+      <mat-form-field>
+        <mat-label>{{'LABEL.ACCESS_TOKEN' | translate}}</mat-label>
 
+        <textarea matInput class="form-control"
+                  type="text"
+                  name="token"
+                  required
+                  autocomplete="off"
+                  [(ngModel)]="token"
+                  #tokenField="ngModel"
+                  placeholder="{{'LABEL.ACCES_TOKEN_TMDB' | translate}}"></textarea>
+        <mat-error *ngIf="tokenField?.errors?.['required']">{{'LABEL.FIELD_REQUIRED' | translate}}</mat-error>
+      </mat-form-field>
+      <br>
       <button mat-raised-button [disabled]="!formAccessToken.valid" type="submit"
               color="primary">{{'LABEL.SAVE' | translate}}</button>
     </div>
