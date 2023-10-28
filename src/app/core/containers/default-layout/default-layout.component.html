@@ -2,10 +2,24 @@
   <mat-toolbar color="primary">
     <span (click)="go([App.ROUTES.HOME])" class="cursor-pointer">Movie search</span>
     <span class="header-spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
+
+
+    <button mat-icon-button [matMenuTriggerFor]="menuLanguage" aria-label="icon-button with a language menu">
+      <mat-icon>language</mat-icon>
+    </button>
+    <mat-menu #menuLanguage="matMenu">
+      <button mat-menu-item (click)="changeLanguage('en')">
+        <span>{{'LABEL.ENGLISH' | translate}}</span>
+      </button>
+      <button mat-menu-item (click)="changeLanguage('es')">
+        <span>{{'LABEL.SPANISH' | translate}}</span>
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="menuSettings" aria-label="icon-button with a menu">
       <mat-icon>settings</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #menuSettings="matMenu">
       <a mat-menu-item [routerLink]="[App.ROUTES.ACCESS_TOKEN]">
         <mat-icon>key</mat-icon>
         <span>{{'LABEL.TOKEN' | translate}}</span>

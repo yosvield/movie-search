@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {SharedModule} from "@shared/shared.module";
 import {App} from "../../../config/app";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-default-layout',
@@ -17,10 +18,16 @@ import {App} from "../../../config/app";
 export class DefaultLayoutComponent {
 
   private _router = inject(Router);
+  private _translateSrv = inject(TranslateService);
 
   protected readonly App = App;
 
   go(commands: any[]) {
     this._router.navigate(commands)
   }
+
+  changeLanguage(lang: string) {
+    this._translateSrv.use(lang);
+  }
+
 }
