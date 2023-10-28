@@ -10,6 +10,10 @@ import {AuthInterceptor} from "@core/interceptor/auth.interceptor";
   declarations: [],
   imports: [
     CommonModule,
+    ToastrModule.forRoot({
+      preventDuplicates: false,
+      positionClass: 'toast-top-right'
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

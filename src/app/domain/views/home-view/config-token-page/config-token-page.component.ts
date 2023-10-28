@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {AuthService} from "@core/services/auth.service";
 import {Location} from "@angular/common";
+import {NotifyService} from "@core/services/notify.service";
 
 @Component({
   selector: 'app-config-token-page',
@@ -12,9 +13,11 @@ export class ConfigTokenPageComponent {
 
   private _authSrv = inject(AuthService);
   private _location = inject(Location);
+  private _notifySrv = inject(NotifyService);
 
   submitForm() {
     this._authSrv.setToken(this.token);
+    this._notifySrv.success('MSG.SAVED_TOKEN');
     this._location.back();
   }
 }

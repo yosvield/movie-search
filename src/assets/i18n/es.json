@@ -12,5 +12,8 @@
     "VOTE_AVERAGE": "Promedio de votos",
     "VOTE_COUNT": "Cantidad de votos",
     "YEAR": "año"
+  },
+  "MSG": {
+    "SAVED_TOKEN": "Se ha guardado el token."
   }
 }
