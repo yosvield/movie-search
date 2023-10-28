@@ -1,0 +1,28 @@
+.list-movie {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  a {
+    text-decoration: none;
+  }
+
+  .movie-card {
+    max-width: 220px;
+    color: black;
+
+    img {
+      width: 220px;
+      height: 330px;
+    }
+
+    .movie-title {
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+  }
+}

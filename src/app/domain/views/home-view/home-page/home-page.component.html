@@ -1,1 +1,44 @@
-<p>home-page works!</p>
+<div class="filter-container">
+  <form #formFilter="ngForm" (ngSubmit)="submitForm()">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-form-field appearance="outline">
+        <input matInput class="form-control"
+               type="text"
+               name="movie-filter-query"
+               required
+               [(ngModel)]="movieFilter.query"
+               #query="ngModel"
+               placeholder="{{'LABEL.SEARCH' | translate}}"/>
+        <!--          <mat-error *ngIf="query?.errors['required']">{{'LABEL.FIELD_REQUIRED' | translate}}</mat-error>-->
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input matInput class="form-control"
+               type="number"
+               name="movie-filter-year"
+               [(ngModel)]="movieFilter.year"
+               #year="ngModel"
+               placeholder="{{'LABEL.YEAR' | translate}}"/>
+        <!--          <mat-error *ngIf="year.errors?.required">{{'LABEL.FIELD_REQUIRED' | translate}}</mat-error>-->
+      </mat-form-field>
+
+      <button mat-raised-button [disabled]="!formFilter.valid" type="submit"
+              color="primary">{{'LABEL.SEARCH' | translate}}</button>
+    </div>
+  </form>
+</div>
+
+<div class="list-movie">
+  <ng-container *ngFor="let movie of movies">
+    <a [routerLink]="['pelicula']">
+      <mat-card class="movie-card">
+        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie.poster_path"
+             [alt]="movie.title">
+        <mat-card-content>
+          <div class="movie-title">{{movie.title}}</div>
+          <div class="movie-year">{{movie.release_date | date : 'yyyy'}}</div>
+        </mat-card-content>
+      </mat-card>
+    </a>
+  </ng-container>
+</div>

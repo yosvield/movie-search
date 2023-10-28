@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HomePageComponent} from '@views/home-view';
 import {HomeRoutingModule} from "@views/home-view/home-routing.module";
+import {SharedModule} from "@shared/shared.module";
+import {ConfigTokenPageComponent, HomePageComponent} from '@views/home-view';
 
 const HOME_COMPONENTS = [
+  ConfigTokenPageComponent,
   HomePageComponent
 ];
 
@@ -12,7 +13,7 @@ const HOME_COMPONENTS = [
     ...HOME_COMPONENTS
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     HomeRoutingModule
   ]
 })

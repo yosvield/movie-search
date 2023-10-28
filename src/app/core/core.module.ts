@@ -2,7 +2,8 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {appInitializerFactory, HttpLoaderFactory} from "@core/factory";
-import {HttpClient} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
+import {AuthInterceptor} from "@core/interceptor/auth.interceptor";
 
 
 @NgModule({
@@ -22,6 +23,11 @@ import {HttpClient} from "@angular/common/http";
       provide: APP_INITIALIZER,
       useFactory: appInitializerFactory,
       deps: [TranslateService],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true
     },
   ]
