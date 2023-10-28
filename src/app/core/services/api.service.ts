@@ -249,7 +249,6 @@ export class ApiService {
     return new HttpHeaders()
       .set('Access-Control-Allow-Origin', '*')
       .set('Content-Type', 'application/json')
-      .set('Access-Control-Allow-Credentials', 'true')
       .set('Accept', 'application/json');
   }
 
