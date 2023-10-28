@@ -250,8 +250,7 @@ export class ApiService {
       .set('Access-Control-Allow-Origin', '*')
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Credentials', 'true')
-      .set('Accept', 'application/json')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MWUxN2IxNTI0NDZiNDE0NDYyMzVlNmE1OGQ1YTkzYSIsInN1YiI6IjY1M2JlMTk1NTY0ZWM3MDBjOGFiMWE4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Jr-6H3betH0lrLMaEsIcI9pQKZs_f-jJ7QWFkPdaYJc');
+      .set('Accept', 'application/json');
   }
 
   private _getHttpParams(data: Object | HttpParams) {

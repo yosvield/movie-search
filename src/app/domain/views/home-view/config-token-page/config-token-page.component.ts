@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {AuthService} from "@core/services/auth.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-config-token-page',
@@ -8,8 +10,11 @@ import {Component} from '@angular/core';
 export class ConfigTokenPageComponent {
   token: string = '';
 
+  private _authSrv = inject(AuthService);
+  private _location = inject(Location);
+
   submitForm() {
-    localStorage.setItem('access-token', this.token);
-    //todo implementa el return
+    this._authSrv.setToken(this.token);
+    this._location.back();
   }
 }

@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ConfigTokenPageComponent, HomePageComponent} from "@views/home-view";
+import {App} from "../../../config/app";
 
 const routes: Routes = [
   {
@@ -8,7 +9,7 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
-    path: 'token-acceso',
+    path: App.ROUTES.ACCESS_TOKEN,
     component: ConfigTokenPageComponent
   }
 ];
