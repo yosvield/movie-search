@@ -1,18 +1,17 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '@env';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from "rxjs/operators";
-
-// import {NotifyService} from "@shared/services/notify.service";
+import {NotifyService} from "@core/services/notify.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) {
-  }
+  private _http = inject(HttpClient);
+  private _notifySrv = inject(NotifyService);
 
   /**
    * Para obtener un objeto
@@ -21,16 +20,13 @@ export class ApiService {
    * @param params params parametros que se pasaran por la url por GET
    * @param blockUI mostrar el loading
    * @param showError mostrar lo sucediera un error
-   * @param observe observe
-   * @param responseType responseType
    * @returns Observable<any>
    */
-  public get(resource: string, params?: HttpParams | Object, blockUI: boolean = true, showError: boolean = true, observe: string = '',
-             responseType: string = ''): Observable<any> {
+  public get(resource: string, params?: HttpParams | Object, blockUI: boolean = true, showError: boolean = true): Observable<any> {
     // @ts-ignore
     const httpParams = this._getHttpParams(params);
 
-    return this.request('GET', resource, null, httpParams, blockUI, showError, observe, responseType);
+    return this.request('GET', resource, null, httpParams, blockUI, showError);
   }
 
   /**
@@ -41,13 +37,10 @@ export class ApiService {
    * @param params params parametros que se pasaran por la url por GET
    * @param blockUI mostrar el loading
    * @param showError mostrar lo sucediera un error
-   * @param observe observe
-   * @param responseType responseType
    * @returns Observable<any>
    */
-  public post(resource: string, data?: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true, observe: string = '',
-              responseType: string = ''): Observable<any> {
-    return this.request('POST', resource, data, params, blockUI, showError, observe, responseType);
+  public post(resource: string, data?: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true): Observable<any> {
+    return this.request('POST', resource, data, params, blockUI, showError);
   }
 
   /**
@@ -58,13 +51,10 @@ export class ApiService {
    * @param params params parametros que se pasaran por la url por GET
    * @param blockUI mostrar el loading
    * @param showError mostrar lo sucediera un erro
-   * @param observe observe
-   * @param responseType responseType
    * @returns Observable<any>
    */
-  public put(resource: string, data: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true, observe: string = '',
-             responseType: string = ''): Observable<any> {
-    return this.request('PUT', resource + data.id, data, params, blockUI, showError, observe, responseType);
+  public put(resource: string, data: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true): Observable<any> {
+    return this.request('PUT', resource + data.id, data, params, blockUI, showError);
   }
 
   /**
@@ -74,13 +64,10 @@ export class ApiService {
    * @param params params parametros que se pasaran por la url por GET
    * @param blockUI mostrar el loading
    * @param showError mostrar lo sucediera un erro
-   * @param observe observe
-   * @param responseType responseType
    * @returns Observable<any>
    */
-  public patch(resource: string, data: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true, observe: string = '',
-               responseType: string = ''): Observable<any> {
-    return this.request('PATCH', resource, data, params, blockUI, showError, observe, responseType);
+  public patch(resource: string, data: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true): Observable<any> {
+    return this.request('PATCH', resource, data, params, blockUI, showError);
   }
 
   /**
@@ -91,17 +78,14 @@ export class ApiService {
    * @param params parametros que se pasaran por la url por GET
    * @param blockUI mostrar el loading
    * @param showError mostrar lo sucediera un erro
-   * @param observe observe
-   * @param responseType responseType
    * @returns Observable<any>
    */
-  public save(resource: string, data: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true, observe: string = '',
-              responseType: string = ''): Observable<any> {
+  public save(resource: string, data: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true): Observable<any> {
     if (data.id === undefined || data.id === null) {
-      return this.request('POST', resource, data, params, blockUI, showError, observe, responseType);
+      return this.request('POST', resource, data, params, blockUI, showError);
     } else {
       const barra = resource.charAt(resource.length - 1) === '/' ? '' : '/';
-      return this.request('PUT', resource + barra + data.id, data, params, blockUI, showError, observe, responseType);
+      return this.request('PUT', resource + barra + data.id, data, params, blockUI, showError);
     }
   }
 
@@ -113,30 +97,10 @@ export class ApiService {
    * @param params parametros que se pasaran por la url por GET
    * @param blockUI mostrar el loading
    * @param showError mostrar lo sucediera un erro
-   * @param observe observe
-   * @param responseType responseType
    * @returns Observable<any>
    */
-  public delete(resource: string, data?: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true,
-                observe: string = '',
-                responseType: string = ''): Observable<any> {
-    return this.request('DELETE', resource, data, params, blockUI, showError, observe, responseType);
-  }
-
-  /**
-   * Para eliminar una lista de objetos
-   *
-   * @param resource url relativa del servicio
-   * @param list lista de id que se van a eliminar
-   * @param blockUI mostrar el loading
-   * @param showError mostrar lo sucediera un erro
-   * @param observe observe
-   * @param responseType responseType
-   * @returns Observable<any>
-   */
-  public deleteList(resource: string, list: any[], blockUI: boolean = true, showError: boolean = true, observe: string = '',
-                    responseType: string = ''): Observable<any> {
-    return this.request('POST', resource, list, undefined, blockUI, showError, observe, responseType);
+  public delete(resource: string, data?: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true): Observable<any> {
+    return this.request('DELETE', resource, data, params, blockUI, showError);
   }
 
   /**
@@ -147,12 +111,9 @@ export class ApiService {
    * @param params parametros que se pasaran por la url por GET
    * @param blockUI mostrar el loading
    * @param showError mostrar lo sucediera un erro
-   * @param observe observe
-   * @param responseType responseType
    * @returns Observable<any>
    */
-  private request(method: string, resource: string, data?: any, params?: HttpParams, blockUI: boolean = true,
-                  showError: boolean = true, observe: string = '', responseType: string = ''): Observable<any> {
+  private request(method: string, resource: string, data?: any, params?: HttpParams, blockUI: boolean = true, showError: boolean = true): Observable<any> {
 
     const url = `${environment.apiUrl}${resource}`;
 
@@ -174,15 +135,7 @@ export class ApiService {
       options.params = params;
     }
 
-    if (observe) {
-      options.observe = observe;
-    }
-
-    if (responseType) {
-      options.responseType = responseType;
-    }
-
-    return this.http.request(method, url, options)
+    return this._http.request(method, url, options)
       .pipe(
         map((response) => {
           return response;
@@ -193,50 +146,11 @@ export class ApiService {
 
   private handleErrors(error: any, showError: boolean = true) {
 
-    if (error.status === 500) {
-      if (!environment.production) {
-        const msg = error.error.error ? error.error.error.exception[0].message : error.statusText;
-        this.showError(msg, showError);
-      } else {
-        const msg = error.error.msg ? error.error.msg : error.error.error ? error.error.error : error.statusText;
-        this.showError(msg, showError);
-      }
-    } else {
-      if (error.status === 401) {
-        // this.authService.login();
-      }
-
-      if (error.status === 403 && error?.error.error == "Error during token introspection: The token does not exist or is not valid anymore") {
-        // this.authService.logout();
-      }
-
-      if (error.status === 406 || error.status === 409) {
-        // const msgW = error.error && error.error.message ? error.error.message : error.statusText;
-        // this._notifySrv.warn(msgW);
-
-        return throwError(error);
-      }
-
-      if (error.status === 423) {
-        // const msgW = error.error && error.error.message ? error.error.message : error.statusText;
-        // this._dialogSrv.info(`${msgW}<br>Su sesión será cerrada.`, {
-        //   accept: () => this.authService.logout()
-        // })
-
-        return throwError(error);
-      }
-
-      const msg = error.error && error.error.message ? error.error.message : error.statusText;
-      this.showError(msg, showError);
+    if (showError) {
+      this._notifySrv.error(error.error.status_message);
     }
 
     return throwError(error);
-  }
-
-  private showError(msg: any, show: boolean): void {
-    if (show) {
-      // this._notifySrv.error(msg);
-    }
   }
 
   /**
