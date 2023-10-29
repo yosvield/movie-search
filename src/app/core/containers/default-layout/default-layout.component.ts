@@ -3,6 +3,7 @@ import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {SharedModule} from "@shared/shared.module";
 import {App} from "../../../config/app";
 import {TranslateService} from "@ngx-translate/core";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-default-layout',
@@ -11,7 +12,8 @@ import {TranslateService} from "@ngx-translate/core";
   imports: [
     RouterOutlet,
     SharedModule,
-    RouterLink
+    RouterLink,
+    MatSidenavModule,
   ],
   standalone: true
 })
@@ -29,5 +31,4 @@ export class DefaultLayoutComponent {
   changeLanguage(lang: string) {
     this._translateSrv.use(lang);
   }
-
 }
