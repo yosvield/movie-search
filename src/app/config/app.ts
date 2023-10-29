@@ -1,7 +1,7 @@
 export class App {
 
   static ROUTES = {
-    HOME: '/',
+    BASE: '/',
     ACCESS_TOKEN: 'token-acceso',
     MOVIE: 'pelicula'
   }
