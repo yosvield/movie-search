@@ -1,32 +1,33 @@
 <ng-container>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" fxLayoutAlign="space-between center">
     <span (click)="go([App.ROUTES.HOME])" class="cursor-pointer">Movie search</span>
-    <span class="header-spacer"></span>
+    <!--    <span class="header-spacer"></span>-->
 
-
-    <button mat-icon-button [matMenuTriggerFor]="menuLanguage" aria-label="icon-button with a language menu"
-            matTooltip="{{ 'LABEL.CHANGE_LANGUAGE' | translate }}">
-      <mat-icon>language</mat-icon>
-    </button>
-    <mat-menu #menuLanguage="matMenu">
-      <button mat-menu-item (click)="changeLanguage('en')">
-        <span>{{'LABEL.ENGLISH' | translate}}</span>
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="menuLanguage" aria-label="icon-button with a language menu"
+              matTooltip="{{ 'LABEL.CHANGE_LANGUAGE' | translate }}">
+        <mat-icon>language</mat-icon>
       </button>
-      <button mat-menu-item (click)="changeLanguage('es')">
-        <span>{{'LABEL.SPANISH' | translate}}</span>
-      </button>
-    </mat-menu>
+      <mat-menu #menuLanguage="matMenu">
+        <button mat-menu-item (click)="changeLanguage('en')">
+          <span>{{'LABEL.ENGLISH' | translate}}</span>
+        </button>
+        <button mat-menu-item (click)="changeLanguage('es')">
+          <span>{{'LABEL.SPANISH' | translate}}</span>
+        </button>
+      </mat-menu>
 
-    <button mat-icon-button [matMenuTriggerFor]="menuSettings" aria-label="icon-button with a menu"
-            matTooltip="{{ 'LABEL.SETTINGS' | translate }}">
-      <mat-icon>settings</mat-icon>
-    </button>
-    <mat-menu #menuSettings="matMenu">
-      <a mat-menu-item [routerLink]="[App.ROUTES.ACCESS_TOKEN]">
-        <mat-icon>key</mat-icon>
-        <span>{{'LABEL.TOKEN' | translate}}</span>
-      </a>
-    </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="menuSettings" aria-label="icon-button with a menu"
+              matTooltip="{{ 'LABEL.SETTINGS' | translate }}">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #menuSettings="matMenu">
+        <a mat-menu-item [routerLink]="[App.ROUTES.ACCESS_TOKEN]">
+          <mat-icon>key</mat-icon>
+          <span>{{'LABEL.TOKEN' | translate}}</span>
+        </a>
+      </mat-menu>
+    </div>
   </mat-toolbar>
 
   <div class="container-body">

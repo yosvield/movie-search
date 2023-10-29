@@ -9,7 +9,6 @@
                [(ngModel)]="movieFilter.query"
                #query="ngModel"
                placeholder="{{'LABEL.SEARCH' | translate}}"/>
-        <!--          <mat-error *ngIf="query?.errors['required']">{{'LABEL.FIELD_REQUIRED' | translate}}</mat-error>-->
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -19,7 +18,6 @@
                [(ngModel)]="movieFilter.year"
                #year="ngModel"
                placeholder="{{'LABEL.YEAR' | translate}}"/>
-        <!--          <mat-error *ngIf="year.errors?.required">{{'LABEL.FIELD_REQUIRED' | translate}}</mat-error>-->
       </mat-form-field>
 
       <button mat-raised-button [disabled]="!formFilter.valid" type="submit"
