@@ -1,16 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ConfigTokenPageComponent, HomePageComponent} from "@views/home-view";
-import {App} from "../../../config/app";
+import {HomePageComponent} from "@views/home-view";
 
 const routes: Routes = [
   {
     path: '',
     component: HomePageComponent
-  },
-  {
-    path: App.ROUTES.ACCESS_TOKEN,
-    component: ConfigTokenPageComponent
   }
 ];
 
