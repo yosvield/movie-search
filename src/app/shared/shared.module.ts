@@ -10,7 +10,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatListModule} from "@angular/material/list";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
-import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
@@ -22,25 +22,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {PaginatorIntlService} from "@shared/services/paginator-intl.service";
 
 const MATERIAL_COMPONENTS = [
   MatButtonModule,
-  MatButtonToggleModule,
   MatCardModule,
-  MatExpansionModule,
-  MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
   MatMenuModule,
-  MatNativeDateModule,
   MatPaginatorModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
   MatRippleModule,
-  MatSelectModule,
-  MatTableModule,
-  MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
 ]
@@ -64,6 +55,9 @@ const ANGULAR_MODULE = [
     CommonModule,
     ...ANGULAR_MODULE,
     ...MATERIAL_COMPONENTS
+  ],
+  providers: [
+    {provide: MatPaginatorIntl, useClass: PaginatorIntlService}
   ]
 })
 export class SharedModule {

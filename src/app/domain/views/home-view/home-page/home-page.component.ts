@@ -12,6 +12,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class HomePageComponent implements OnInit {
 
   movieFilter = new MovieFilter();
+  page_size: number = 0;
+  length: number = 0;
 
   movies: Movie[] = [];
 
@@ -30,6 +32,8 @@ export class HomePageComponent implements OnInit {
   }
 
   submitForm() {
+    this.movieFilter.page = 1;
+
     this._router.navigate([], {
       queryParams: this.movieFilter,
       queryParamsHandling: 'merge'
@@ -40,10 +44,21 @@ export class HomePageComponent implements OnInit {
     return movie.id;
   }
 
+  changePage(event: any) {
+    this.movieFilter.page = event.pageIndex + 1;
+
+    this._router.navigate([], {
+      queryParams: this.movieFilter,
+      queryParamsHandling: 'merge'
+    });
+  }
+
   private _search() {
     this._movieSrv.filter(this.movieFilter)
       .subscribe((data) => {
         this.movies = data.results;
+        this.movieFilter.page = data.page;
+        this.length = data.total_results;
       });
   }
 }

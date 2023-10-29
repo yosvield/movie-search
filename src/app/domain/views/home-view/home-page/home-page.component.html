@@ -41,4 +41,12 @@
       </mat-card>
     </a>
   </ng-container>
+
+  <mat-paginator [length]="length"
+                 [pageSize]="20"
+                 [pageIndex]="movieFilter.page-1"
+                 (page)="changePage($event)"
+                 hidePageSize="true"
+                 aria-label="Select page">
+  </mat-paginator>
 </div>

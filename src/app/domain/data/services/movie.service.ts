@@ -11,7 +11,7 @@ export class MovieService {
 
   _apiSrv: ApiService = inject(ApiService);
 
-  filter(movieFilter: MovieFilter): Observable<{ results: Movie[], page: number, total_pages: number }> {
+  filter(movieFilter: MovieFilter): Observable<{ results: Movie[], page: number, total_pages: number, total_results: number }> {
     return this._apiSrv.get(`/search/movie`, movieFilter);
   }
 
