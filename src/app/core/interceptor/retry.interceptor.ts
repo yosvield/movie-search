@@ -19,9 +19,9 @@ export class RetryInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       retry({
         count: RetryInterceptor.MAX_RETRY_FAIL,
-        delay: (err, retryCount) =>
-          retryCount >= RetryInterceptor.RETRY_FAIL || RetryInterceptor.STATUS_NOT_RETRY_FAIL.includes(err.status)
-            ? throwError(err)
+        delay: (error, retryCount) =>
+          retryCount >= RetryInterceptor.RETRY_FAIL || RetryInterceptor.STATUS_NOT_RETRY_FAIL.includes(error.status)
+            ? throwError(() => error)
             : timer(RetryInterceptor.DELAY_RETRY_FAIL)
       })
     );

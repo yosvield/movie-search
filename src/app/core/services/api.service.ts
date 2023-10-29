@@ -150,7 +150,7 @@ export class ApiService {
       this._notifySrv.error(error.error.status_message);
     }
 
-    return throwError(error);
+    return throwError(() => error);
   }
 
   /**
