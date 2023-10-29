@@ -20,7 +20,6 @@ export class MovieService {
     total_results: number
   }> {
 
-    // @ts-ignore
     return this._apiSrv.get(`/search/movie`, {...movieFilter, language: this._getLang()});
   }
 
@@ -34,7 +33,6 @@ export class MovieService {
       es: 'es-ES',
     };
 
-    // @ts-ignore
     return lang[this._translateSrv.currentLang];
   }
 }

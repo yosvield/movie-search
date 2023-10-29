@@ -6,6 +6,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {CoreModule} from "@core/core.module";
 import {SharedModule} from "@shared/shared.module";
+import {NgCacheRouteReuseStoreService} from "@core/services/ng-cache-route-reuse-store.service";
+import {NgCacheRouteReuseService} from "@core/services/ng-cache-route-reuse.service";
+import {RouteReuseStrategy} from "@angular/router";
+import {NgCacheRouteReuseStrategy} from "@core/services/ng-cache-route-reuse.strategy";
 
 @NgModule({
   declarations: [
@@ -25,7 +29,20 @@ import {SharedModule} from "@shared/shared.module";
     CoreModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: NgCacheRouteReuseStoreService,
+      useFactory: NgCacheRouteReuseStoreService.getInstance,
+    },
+    {
+      provide: NgCacheRouteReuseService,
+      useFactory: NgCacheRouteReuseService.getInstance,
+    },
+    {
+      provide: RouteReuseStrategy,
+      useClass: NgCacheRouteReuseStrategy,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

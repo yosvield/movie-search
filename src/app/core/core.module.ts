@@ -7,7 +7,6 @@ import {AuthInterceptor} from "@core/interceptor/auth.interceptor";
 import {ToastrModule} from "ngx-toastr";
 import {RetryInterceptor} from "@core/interceptor/retry.interceptor";
 
-
 @NgModule({
   declarations: [],
   imports: [

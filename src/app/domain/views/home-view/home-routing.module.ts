@@ -5,7 +5,10 @@ import {HomePageComponent} from "@views/home-view";
 const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent
+    component: HomePageComponent,
+    data: {
+      reuse: true
+    },
   }
 ];
 
