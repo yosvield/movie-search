@@ -5,9 +5,15 @@ import {DefaultLayoutComponent} from "@core/containers/default-layout/default-la
 const routes: Routes = [
   {
     path: '',
+    redirectTo: "en",
+    pathMatch: "full"
+  },
+  {
+    path: ':lang',
     component: DefaultLayoutComponent,
     loadChildren: () => import('@views/views.module').then((m) => m.ViewsModule)
   },
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
