@@ -1,7 +1,7 @@
 <div class="filter-container">
   <form #formFilter="ngForm" (ngSubmit)="submitForm()">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <mat-form-field appearance="outline">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <mat-form-field appearance="outline" fxFill fxFlex="60">
         <input matInput class="form-control"
                type="text"
                name="movie-filter-query"
@@ -11,7 +11,7 @@
                placeholder="{{'LABEL.SEARCH' | translate}}"/>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" fxFill fxFlex="20">
         <input matInput class="form-control"
                type="number"
                name="movie-filter-year"
@@ -19,6 +19,7 @@
                #year="ngModel"
                placeholder="{{'LABEL.YEAR' | translate}}"/>
       </mat-form-field>
+
 
       <button mat-raised-button [disabled]="!formFilter.valid" type="submit"
               color="primary">{{'LABEL.SEARCH' | translate}}</button>
@@ -40,11 +41,13 @@
     </a>
   </ng-container>
 
-  <mat-paginator [length]="length"
-                 [pageSize]="20"
-                 [pageIndex]="movieFilter.page-1"
-                 (page)="changePage($event)"
-                 hidePageSize="true"
-                 aria-label="Select page">
-  </mat-paginator>
+  <ng-container *ngIf="movies.length">
+    <mat-paginator [length]="length"
+                   [pageSize]="20"
+                   [pageIndex]="movieFilter.page-1"
+                   (page)="changePage($event)"
+                   hidePageSize="true"
+                   aria-label="Select page">
+    </mat-paginator>
+  </ng-container>
 </div>
