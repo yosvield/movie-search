@@ -4,6 +4,8 @@ import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate
 import {appInitializerFactory, HttpLoaderFactory} from "@core/factory";
 import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
 import {AuthInterceptor} from "@core/interceptor/auth.interceptor";
+import {ToastrModule} from "ngx-toastr";
+import {RetryInterceptor} from "@core/interceptor/retry.interceptor";
 
 
 @NgModule({
@@ -34,6 +36,11 @@ import {AuthInterceptor} from "@core/interceptor/auth.interceptor";
       useClass: AuthInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RetryInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule {
