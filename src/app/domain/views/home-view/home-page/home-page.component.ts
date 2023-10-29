@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {MovieFilter} from "@domain/data/models/movie.filter";
 import {Movie} from "@domain/data/models/movie";
 import {MovieService} from "@domain/data/services/movie.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, convertToParamMap, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -26,8 +26,12 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedRoute.queryParams.subscribe((params) => {
-      this.movieFilter = Object.assign(new MovieFilter(), params);
-      this._search();
+      const paramsMap = convertToParamMap(params);
+
+      if (paramsMap.has('query')) {
+        this.movieFilter = Object.assign(new MovieFilter(), params);
+        this._search();
+      }
     });
   }
 
