@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {MatPaginatorIntl} from '@angular/material/paginator';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -6,10 +6,12 @@ import {TranslateService} from '@ngx-translate/core';
 export class PaginatorIntlService extends MatPaginatorIntl {
   ofLabel = 'of';
 
-  constructor(public translate: TranslateService) {
+  private _translate = inject(TranslateService);
+
+  constructor() {
     super();
 
-    this.translate.onLangChange.subscribe((e: Event) => {
+    this._translate.onLangChange.subscribe(() => {
       this.getAndInitTranslations();
     });
 
@@ -17,12 +19,13 @@ export class PaginatorIntlService extends MatPaginatorIntl {
   }
 
   getAndInitTranslations() {
-    this.translate.get(['LABEL.NEXT_PAGE', 'LABEL.PREVIOUS_PAGE', 'LABEL.OF']).subscribe(translation => {
-      this.nextPageLabel = translation['LABEL.NEXT_PAGE'];
-      this.previousPageLabel = translation['LABEL.PREVIOUS_PAGE'];
-      this.ofLabel = translation['LABEL.OF'];
-      this.changes.next();
-    });
+    this._translate.get(['LABEL.NEXT_PAGE', 'LABEL.PREVIOUS_PAGE', 'LABEL.OF'])
+      .subscribe(translation => {
+        this.nextPageLabel = translation['LABEL.NEXT_PAGE'];
+        this.previousPageLabel = translation['LABEL.PREVIOUS_PAGE'];
+        this.ofLabel = translation['LABEL.OF'];
+        this.changes.next();
+      });
   }
 
   override getRangeLabel = (page: number, pageSize: number, length: number) => {
