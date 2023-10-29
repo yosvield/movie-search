@@ -5,4 +5,10 @@ export class App {
     ACCESS_TOKEN: 'token-acceso',
     MOVIE: 'pelicula'
   }
+
+
+  static LANGUAGE = {
+    AVAILABLES: [{code: 'en', name: 'LABEL.ENGLISH'}, {code: 'es', name: 'LABEL.SPANISH'}],
+    toggle: (lang) => lang === 'es' ? 'en' : 'es'
+  }
 }

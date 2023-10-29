@@ -1,16 +1,16 @@
 export class Movie {
   id?: number;
-  title: string | undefined;
-  original_title: string | undefined;
-  release_date: string | undefined;
-  vote_average: number | undefined;
-  poster_path: string | undefined;
-  original_language: string | undefined;
-  pretty_original_language: string | undefined;
-  backdrop_path: string | undefined;
-  vote_count: string | undefined;
-  popularity: string | undefined;
-  overview: string | undefined;
+  title: string;
+  original_title: string;
+  release_date: string;
+  vote_average: number;
+  poster_path: string;
+  original_language: string;
+  pretty_original_language: string;
+  backdrop_path: string;
+  vote_count: string;
+  popularity: string;
+  overview: string;
   spoken_languages: any[] = [];
 
   refactor() {

@@ -18,7 +18,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
   standalone: true
 })
 export class DefaultLayoutComponent implements OnInit {
-  currentUrl?: string;
+  currentUrl: string;
 
   private _router = inject(Router);
   private _activatedRoute = inject(ActivatedRoute);
@@ -29,7 +29,7 @@ export class DefaultLayoutComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params) => {
       this.currentUrl = this._router.url;
-      this._changeTranslate(params['lang']);
+      this.changeLanguage(params['lang']);
     });
 
     this._router.events.subscribe((evt: any) => {
@@ -42,25 +42,21 @@ export class DefaultLayoutComponent implements OnInit {
         }
       }
     });
-  }
 
-  go(commands: any[]) {
-    this._router.navigate(commands);
+    this._translateSrv.onLangChange
+      .subscribe((lang) => {
+        const paths = this.currentUrl.split('/');
+        paths[1] = paths[1].replace(/^.{2}/, lang.lang);
+
+        this._router.navigateByUrl(paths.join('/'));
+      });
   }
 
   changeLanguage(lang: string) {
-    this._changeTranslate(lang);
-
-    const paths = this.currentUrl?.split('/');
-
-    // @ts-ignore
-    paths[1] = lang;
-    // @ts-ignore
-    this._router.navigateByUrl(paths.join('/'));
-
+    this._translateSrv.use(lang);
   }
 
-  private _changeTranslate(lang: string) {
-    this._translateSrv.use(lang);
+  goHome() {
+    this._router.navigate([App.ROUTES.BASE, this._translateSrv.currentLang]);
   }
 }

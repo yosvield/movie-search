@@ -35,7 +35,11 @@
              [alt]="movie.title">
         <mat-card-content>
           <div class="movie-title">{{movie.title}}</div>
-          <div class="movie-year">{{movie.release_date | date : 'yyyy'}}</div>
+          <div class="movie-year" fxLayout="row" fxLayoutAlign="space-between center">
+            <div>{{movie.release_date | date : 'yyyy'}}</div>
+            <div class="movie-vote-average"><app-vote-average [value]="movie.vote_average"/></div>
+          </div>
+
         </mat-card-content>
       </mat-card>
     </a>

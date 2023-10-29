@@ -26,11 +26,14 @@
     "ACCESS_TOKEN": "Access token",
     "ACCES_TOKEN_TMDB": "Access token for TMDb API",
     "BACK": "Back",
+    "CHANGE": "Change",
     "CHANGE_LANGUAGE": "Change language",
     "ENGLISH": "English",
     "FIELD_REQUIRED": "Field required",
     "NEXT_PAGE": "Next page",
+    "NO_THANKS": "No thanks",
     "OF": "of",
+    "OK": "Ok",
     "ORIGINAL_LANGUAJE": "Original language",
     "OVERVIEW": "Overview",
     "POPULARITY": "Popularity",
@@ -45,7 +48,8 @@
     "YEAR": "year"
   },
   "MSG": {
-    "SAVED_TOKEN": "Saved token."
+    "SAVED_TOKEN": "Saved token.",
+    "SUGGEST_LANGUAGE_CHANGE": "Do you want to change the language to improve search results?"
   },
   "Nothing to update.": "Nothing to update.",
   "Service offline: This service is temporarily offline, try again later.": "Service offline: This service is temporarily offline, try again later.",

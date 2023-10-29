@@ -3,6 +3,7 @@ import {SharedModule} from "@shared/shared.module";
 import {DetailPageComponent} from '@views/movie-view';
 import {MovieRoutingModule} from "@views/movie-view/movie-routing.module";
 import {MatCardModule} from "@angular/material/card";
+import {VoteAverageComponent} from "@shared/components/vote-average/vote-average.component";
 
 const MOVIE_COMPONENTS = [
   DetailPageComponent
@@ -12,11 +13,12 @@ const MOVIE_COMPONENTS = [
   declarations: [
     ...MOVIE_COMPONENTS
   ],
-  imports: [
-    SharedModule,
-    MovieRoutingModule,
-    MatCardModule
-  ]
+    imports: [
+        SharedModule,
+        MovieRoutingModule,
+        MatCardModule,
+        VoteAverageComponent
+    ]
 })
 export class MovieViewModule {
 }

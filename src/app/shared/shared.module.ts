@@ -14,6 +14,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {PaginatorIntlService} from "@shared/services/paginator-intl.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 const MATERIAL_COMPONENTS = [
   MatButtonModule,
@@ -22,10 +24,12 @@ const MATERIAL_COMPONENTS = [
   MatInputModule,
   MatMenuModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatRippleModule,
+  MatSnackBarModule,
   MatToolbarModule,
   MatTooltipModule
-]
+];
 
 const ANGULAR_MODULE = [
   FlexLayoutModule,
@@ -33,7 +37,7 @@ const ANGULAR_MODULE = [
   HttpClientModule,
   ReactiveFormsModule,
   TranslateModule
-]
+];
 
 @NgModule({
   declarations: [],

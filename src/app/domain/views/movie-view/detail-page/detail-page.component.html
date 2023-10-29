@@ -24,12 +24,7 @@
 
         <div class="other-info">
           <div>
-            <strong>{{'LABEL.ORIGINAL_LANGUAJE' | translate}}: </strong>
-            <span>{{movie?.pretty_original_language}}</span>
-          </div>
-          <div>
-            <strong>{{'LABEL.VOTE_AVERAGE' | translate}}: </strong>
-            <span>{{movie?.vote_average}}</span>
+            <app-vote-average [value]="movie?.vote_average"/>
           </div>
           <div>
             <strong>{{'LABEL.VOTE_COUNT' | translate}}: </strong>
@@ -38,6 +33,10 @@
           <div>
             <strong>{{'LABEL.POPULARITY' | translate}}: </strong>
             <span>{{movie?.popularity}}</span>
+          </div>
+          <div>
+            <strong>{{'LABEL.ORIGINAL_LANGUAJE' | translate}}: </strong>
+            <span>{{movie?.pretty_original_language}}</span>
           </div>
         </div>
 

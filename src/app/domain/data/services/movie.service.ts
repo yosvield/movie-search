@@ -19,7 +19,6 @@ export class MovieService {
     total_pages: number,
     total_results: number
   }> {
-
     return this._apiSrv.get(`/search/movie`, {...movieFilter, language: this._getLang()});
   }
 
