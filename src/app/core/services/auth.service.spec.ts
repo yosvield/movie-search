@@ -14,8 +14,8 @@ describe('AuthService', () => {
       return storage[key] || null;
     });
 
-    spyOn(Object.getPrototypeOf(localStorage), 'setItem').and.callFake((key: string, value: string): string => {
-      return (storage[key] = value as string);
+    spyOn(Object.getPrototypeOf(localStorage), 'setItem').and.callFake((key: string, value: string) => {
+      storage[key] = value as string;
     });
   });
 
