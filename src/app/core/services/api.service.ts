@@ -23,7 +23,6 @@ export class ApiService {
    * @returns Observable<any>
    */
   public get(resource: string, params?: HttpParams | Object, blockUI: boolean = true, showError: boolean = true): Observable<any> {
-    // @ts-ignore
     const httpParams = this._getHttpParams(params);
 
     return this.request('GET', resource, null, httpParams, blockUI, showError);
@@ -156,7 +155,7 @@ export class ApiService {
   /**
    * Retorna los header para las peticiones
    *
-   * @author Yosviel Dominguez <ydominguezg@uci.cu>
+   * @author Yosviel Dominguez <yosvield@gmail.com>
    * @returns HttpHeaders
    */
   private _getHeader(): HttpHeaders {
@@ -172,7 +171,6 @@ export class ApiService {
       let params = new HttpParams();
 
       Object.keys(data).map(key => {
-        // @ts-ignore
         params = params.set(key, data[key]);
       });
 
