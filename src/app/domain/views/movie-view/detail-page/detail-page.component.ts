@@ -2,7 +2,6 @@ import {Component, inject, OnInit} from '@angular/core';
 import {MovieService} from "@domain/data/services/movie.service";
 import {ActivatedRoute} from "@angular/router";
 import {Movie} from "@domain/data/models/movie";
-import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-detail-page',
