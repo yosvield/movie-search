@@ -1,14 +1,28 @@
 @import "../../../../scss/variables";
 
-.header-spacer {
-  flex: 1 1 auto;
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .container-body {
   flex-direction: row;
   box-sizing: border-box;
   display: flex;
-  max-height: 100%;
+  height: calc(100% - $height-toolbar);
   justify-content: center;
 
   .body {
@@ -16,6 +30,9 @@
     max-width: $max-with;
   }
 }
+
+
+
 
 
 

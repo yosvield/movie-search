@@ -1,1 +1,55 @@
-<p>detail-page works!</p>
+<div class="backdrop-img"
+     [style.background-image]="'url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces' + movie?.backdrop_path + ')'">
+</div>
+
+<div class="container-page">
+
+  <div class="container-detail-movie">
+    <div class="title p-2">
+      <span>{{movie?.title}}</span>
+      <span *ngIf="movie?.title != movie?.original_title" class="title">- {{movie?.original_title}}</span>
+    </div>
+
+    <div class="container-detail">
+      <mat-card class="poster movie-card">
+        <app-poster
+          [poster_path]="movie?.poster_path"
+          [alt]="movie?.title"/>
+      </mat-card>
+
+      <div class="detail">
+        <div class="facts">
+          <div fxLayout="row" fxLayoutAlign="center end">
+            <mat-icon color="primary">star</mat-icon>
+            <span class="text-white pl-1"><strong>{{movie?.vote_average | number: '.0-1'}}</strong></span>
+          </div>
+          <div>
+            <strong>{{'LABEL.RELEASE_DATE' | translate}}: </strong>
+            <span>{{movie?.release_date | date: 'M/d/yyyy'}}</span>
+          </div>
+          <div>
+            <strong>{{'LABEL.VOTE_COUNT' | translate}}: </strong>
+            <span>{{movie?.vote_count}}</span>
+          </div>
+          <div>
+            <strong>{{'LABEL.POPULARITY' | translate}}: </strong>
+            <span>{{movie?.popularity}}</span>
+          </div>
+          <div>
+            <strong>{{'LABEL.ORIGINAL_LANGUAJE' | translate}}: </strong>
+            <span>{{movie?.pretty_original_language}}</span>
+          </div>
+        </div>
+
+        <div class="overview-container">
+          <h3><strong>{{'LABEL.OVERVIEW' | translate}}</strong></h3>
+          <div class="overview">
+            <p>{{movie?.overview}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

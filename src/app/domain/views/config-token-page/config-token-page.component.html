@@ -1,0 +1,22 @@
+<div class="container p-2"  fxLayout="column" fxLayoutAlign="space-evenly stretch">
+  <form #formAccessToken="ngForm" (ngSubmit)="submitForm()" autocomplete="off">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch">
+      <mat-form-field>
+        <mat-label>{{'LABEL.ACCESS_TOKEN' | translate}}</mat-label>
+
+        <textarea matInput class="form-control"
+                  type="text"
+                  name="token"
+                  required
+                  autocomplete="off"
+                  [(ngModel)]="token"
+                  #tokenField="ngModel"
+                  placeholder="{{'LABEL.ACCES_TOKEN_TMDB' | translate}}"></textarea>
+        <mat-error *ngIf="tokenField?.errors?.['required']">{{'LABEL.FIELD_REQUIRED' | translate}}</mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button [disabled]="!formAccessToken.valid" type="submit"
+              color="primary">{{'LABEL.SAVE' | translate}}</button>
+    </div>
+  </form>
+</div>

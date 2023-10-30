@@ -2,13 +2,19 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {appInitializerFactory, HttpLoaderFactory} from "@core/factory";
-import {HttpClient} from "@angular/common/http";
-
+import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
+import {AuthInterceptor} from "@core/interceptor/auth.interceptor";
+import {ToastrModule} from "ngx-toastr";
+import {RetryInterceptor} from "@core/interceptor/retry.interceptor";
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    ToastrModule.forRoot({
+      preventDuplicates: false,
+      positionClass: 'toast-top-right'
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -24,6 +30,16 @@ import {HttpClient} from "@angular/common/http";
       deps: [TranslateService],
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RetryInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule {

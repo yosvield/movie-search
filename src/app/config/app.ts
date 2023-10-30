@@ -1,12 +1,14 @@
-import {TypeDiscipline} from "@domain/data/enums/type-discipline";
-
 export class App {
 
   static ROUTES = {
-    TRAINING_ADDITION: TypeDiscipline.ADDITION,
-    TRAINING_MULTIPLICATION: TypeDiscipline.MULTIPLICATION,
-    TRAINING_DIVISION: TypeDiscipline.DIVISION,
-    TRAINING_ROOT: TypeDiscipline.ROOT,
-    TRAINING_DATE: TypeDiscipline.CALENDAR_DATE,
+    BASE: '/',
+    ACCESS_TOKEN: 'token-acceso',
+    MOVIE: 'pelicula'
+  }
+
+
+  static LANGUAGE = {
+    AVAILABLES: [{code: 'en', name: 'LABEL.ENGLISH'}, {code: 'es', name: 'LABEL.SPANISH'}],
+    toggle: (lang) => lang === 'es' ? 'en' : 'es'
   }
 }

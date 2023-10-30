@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "scss/variables";
+@import "scss/scroll";
+
 html, body {
   height: 100%;
 }
@@ -9,5 +12,25 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-@import "scss/_variables";
-@import "scss/scroll";
+.title {
+  font-size: $font-size-titles;
+  color: #fff;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-white-7 {
+  color: $color-white;
+}
+
+.p-2 {
+  padding: 16px;
+}
+
+.pl-1 {
+  padding-left: .5rem;
+}

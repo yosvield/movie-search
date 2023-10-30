@@ -1,0 +1,8 @@
+{
+  "/3/*": {
+    "target": "https://api.themoviedb.org",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

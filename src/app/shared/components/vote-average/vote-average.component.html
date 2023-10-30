@@ -1,0 +1,11 @@
+<div class="container"
+     matTooltip="{{ 'LABEL.VOTE_AVERAGE' | translate }}">
+  <mat-progress-spinner
+
+    class="spinner"
+    color="primary"
+    [diameter]="diameter"
+    [value]="value*10">
+  </mat-progress-spinner>
+  <span class="info-value">{{value | number: '.0-1'}}</span>
+</div>

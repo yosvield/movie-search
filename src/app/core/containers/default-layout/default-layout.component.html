@@ -1,22 +1,49 @@
-<ng-container>
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Movie search</span>
-    <span class="header-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" fxLayoutAlign="space-between center">
 
-  <div class="container-body">
-    <div class="body">
-      <router-outlet></router-outlet>
+      <a *ngIf="isActiveHome()" mat-icon-button>
+        <mat-icon>home</mat-icon>
+      </a>
+
+      <a *ngIf="!isActiveHome()" (click)="back()" mat-icon-button
+         matTooltip="{{ 'LABEL.BACK' | translate }}">
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+
+      <span>Movie search</span>
+
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menuLanguage" aria-label="icon-button with a language menu"
+                matTooltip="{{ 'LABEL.CHANGE_LANGUAGE' | translate }}">
+          <mat-icon>language</mat-icon>
+        </button>
+        <mat-menu #menuLanguage="matMenu">
+          <ng-container *ngFor="let lang of App.LANGUAGE.AVAILABLES">
+            <button mat-menu-item (click)="changeLanguage(lang.code)">
+              <span>{{lang.name | translate}}</span>
+            </button>
+          </ng-container>
+        </mat-menu>
+
+        <button mat-icon-button [matMenuTriggerFor]="menuSettings" aria-label="icon-button with a menu"
+                matTooltip="{{ 'LABEL.SETTINGS' | translate }}">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <mat-menu #menuSettings="matMenu">
+          <a mat-menu-item [routerLink]="[App.ROUTES.ACCESS_TOKEN]">
+            <mat-icon>key</mat-icon>
+            <span>{{'LABEL.TOKEN' | translate}}</span>
+          </a>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+
+    <div class="container-body">
+      <div class="body">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-  </div>
-</ng-container>
 
+  </mat-sidenav-content>
+</mat-sidenav-container>

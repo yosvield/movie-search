@@ -1,0 +1,32 @@
+@import "./src/scss/variables";
+
+.list-movie {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  a {
+    text-decoration: none;
+  }
+
+  .movie-card {
+    max-width: 220px;
+    min-height: 422px;
+
+    .movie-title {
+      margin-top: 16px;
+    }
+
+    .movie-vote-average {
+      border-radius: 50%;
+      background: black;
+      color: white;
+      position: absolute;
+      top: 72%;
+      right: 5%;
+    }
+  }
+}
