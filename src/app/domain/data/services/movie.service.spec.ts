@@ -9,7 +9,6 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {MovieFilter} from "@domain/data/models/movie.filter";
 import {of} from "rxjs";
 import {ApiService} from "@core/services/api.service";
-import {Movie} from "@domain/data/models/movie";
 
 describe('MovieService', () => {
   let service: MovieService;
@@ -152,7 +151,7 @@ describe('MovieService', () => {
     apiServiceSpy.get.and.returnValue(of(mockMovie))
 
     service.get(mockIdMovie).subscribe(res => {
-      expect(res).toEqual(mockMovie as Movie);
+      expect(res).toEqual(mockMovie);
       done();
     });
   });

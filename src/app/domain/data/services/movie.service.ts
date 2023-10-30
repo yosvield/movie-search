@@ -14,7 +14,7 @@ export class MovieService {
   _translateSrv: TranslateService = inject(TranslateService);
 
   filter(movieFilter: MovieFilter): Observable<{
-    results: any[],
+    results: any[] | Movie[],
     page: number,
     total_pages: number,
     total_results: number
@@ -22,7 +22,7 @@ export class MovieService {
     return this._apiSrv.get(`/search/movie`, {...movieFilter, language: this._getLang()});
   }
 
-  get(idMovie: number): Observable<Movie> {
+  get(idMovie: number): Observable<Movie | any> {
     return this._apiSrv.get(`/movie/${idMovie}`, {language: this._getLang()});
   }
 
