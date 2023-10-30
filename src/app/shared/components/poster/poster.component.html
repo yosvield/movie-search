@@ -1,0 +1,7 @@
+<img *ngIf="poster_path else notFoundImgTmp" mat-card-image [ngSrc]="poster_path" [alt]="alt" [width]="width"
+     [height]="height">
+
+<ng-template #notFoundImgTmp>
+  <img mat-card-image [ngSrc]="NOT_FOUND_IMG" alt="not found image" [width]="width" [height]="height"
+       [loaderParams]="{selfLoader: true}">
+</ng-template>
