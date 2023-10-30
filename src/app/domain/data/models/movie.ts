@@ -6,7 +6,7 @@ export class Movie {
   vote_average: number;
   poster_path: string;
   original_language: string;
-  pretty_original_language: string;
+  pretty_original_language?: string;
   backdrop_path: string;
   vote_count: string;
   popularity: string;
