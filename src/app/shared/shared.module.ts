@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {TranslateModule} from '@ngx-translate/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
@@ -35,6 +35,7 @@ const ANGULAR_MODULE = [
   FlexLayoutModule,
   FormsModule,
   HttpClientModule,
+  NgOptimizedImage,
   ReactiveFormsModule,
   TranslateModule
 ];
