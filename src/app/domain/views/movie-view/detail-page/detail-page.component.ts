@@ -15,7 +15,6 @@ export class DetailPageComponent implements OnInit {
 
   private _movieSrv: MovieService = inject(MovieService);
   private _activatedRoute = inject(ActivatedRoute);
-  private _location = inject(Location);
 
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params) => {
@@ -23,9 +22,7 @@ export class DetailPageComponent implements OnInit {
     });
   }
 
-  back() {
-    this._location.back();
-  }
+
 
   private _getDetail(idMovie: number) {
     this._movieSrv.get(idMovie)

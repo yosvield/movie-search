@@ -1,9 +1,18 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
+import {
+  ActivatedRoute,
+  IsActiveMatchOptions,
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet
+} from "@angular/router";
 import {SharedModule} from "@shared/shared.module";
 import {App} from "../../../config/app";
 import {TranslateService} from "@ngx-translate/core";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-default-layout',
@@ -14,6 +23,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     SharedModule,
     RouterLink,
     MatSidenavModule,
+    RouterLinkActive,
   ],
   standalone: true
 })
@@ -22,7 +32,8 @@ export class DefaultLayoutComponent implements OnInit {
 
   private _router = inject(Router);
   private _activatedRoute = inject(ActivatedRoute);
-  private _translateSrv = inject(TranslateService);
+  public _translateSrv = inject(TranslateService);
+  private _location = inject(Location);
 
   protected readonly App = App;
 
@@ -58,5 +69,19 @@ export class DefaultLayoutComponent implements OnInit {
 
   goHome() {
     this._router.navigate([App.ROUTES.BASE, this._translateSrv.currentLang]);
+  }
+
+  back() {
+    this._location.back();
+  }
+
+  isActiveHome(): boolean {
+    const options: IsActiveMatchOptions = {
+      matrixParams: 'ignored',
+      queryParams: 'ignored',
+      paths: 'exact',
+      fragment: 'ignored'
+    };
+    return this._router.isActive(this._router.createUrlTree([App.ROUTES.BASE, this._translateSrv.currentLang]), options);
   }
 }

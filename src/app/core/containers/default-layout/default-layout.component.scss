@@ -1,6 +1,5 @@
 @import "../../../../scss/variables";
 
-
 .sidenav-container {
   height: 100%;
 }
@@ -23,13 +22,12 @@
   flex-direction: row;
   box-sizing: border-box;
   display: flex;
-  max-height: 100%;
+  height: calc(100% - $height-toolbar);
   justify-content: center;
 
   .body {
     width: 100%;
     max-width: $max-with;
-    padding: 16px;
   }
 }
 

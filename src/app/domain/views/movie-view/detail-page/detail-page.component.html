@@ -1,30 +1,30 @@
-<button (click)="back()" mat-mini-fab color="primary" aria-label="Icon button with a back icon"
-        matTooltip="{{ 'LABEL.BACK' | translate }}">
-  <mat-icon>arrow_back</mat-icon>
-</button>
-
-<div class="bg-img"
+<div class="backdrop-img"
      [style.background-image]="'url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces' + movie?.backdrop_path + ')'">
-  <div class="container custom_bg">
+</div>
 
-    <mat-card class="poster movie-card">
-      <img mat-card-image [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie?.poster_path"
-           [alt]="movie?.title">
-    </mat-card>
+<div class="container-page">
 
-    <div class="detail">
-      <section class="">
-        <div class="title"><strong>{{movie?.title}}</strong>({{movie?.release_date | date : 'yyyy'}})</div>
-        <div *ngIf="movie?.title != movie?.original_title" class="title"><strong>{{movie?.original_title}}</strong>
-        </div>
+  <div class="container-detail-movie">
+    <div class="title p-2">
+      <span>{{movie?.title}}</span>
+      <span *ngIf="movie?.title != movie?.original_title" class="title">- {{movie?.original_title}}</span>
+    </div>
 
+    <div class="container-detail">
+      <mat-card class="poster movie-card">
+        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie?.poster_path"
+             [alt]="movie?.title">
+      </mat-card>
+
+      <div class="detail">
         <div class="facts">
-          <span class="release">{{movie?.release_date | date: 'M/d/yyyy'}}</span>
-        </div>
-
-        <div class="other-info">
+          <div fxLayout="row" fxLayoutAlign="center end">
+            <mat-icon color="primary">star</mat-icon>
+            <span class="text-white pl-1"><strong>{{movie?.vote_average | number: '.0-1'}}</strong></span>
+          </div>
           <div>
-            <app-vote-average [value]="movie?.vote_average"/>
+            <strong>{{'LABEL.RELEASE_DATE' | translate}}: </strong>
+            <span>{{movie?.release_date | date: 'M/d/yyyy'}}</span>
           </div>
           <div>
             <strong>{{'LABEL.VOTE_COUNT' | translate}}: </strong>
@@ -46,8 +46,9 @@
             <p>{{movie?.overview}}</p>
           </div>
         </div>
-
-      </section>
+      </div>
     </div>
   </div>
+
+
 </div>

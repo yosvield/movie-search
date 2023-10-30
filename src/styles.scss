@@ -12,8 +12,25 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.title {
+  font-size: $font-size-titles;
+  color: #fff;
+  font-weight: 300;
+  line-height: normal;
+}
 
+.text-white {
+  color: #fff;
+}
 
-.cursor-pointer {
-  cursor: pointer;
+.text-white-7 {
+  color: $color-white;
+}
+
+.p-2 {
+  padding: 16px;
+}
+
+.pl-1 {
+  padding-left: .5rem;
 }
