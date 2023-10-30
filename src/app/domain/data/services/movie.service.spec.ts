@@ -8,12 +8,16 @@ import {HttpLoaderFactory} from "@core/factory";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {MovieFilter} from "@domain/data/models/movie.filter";
 import {of} from "rxjs";
+import {ApiService} from "@core/services/api.service";
+import {Movie} from "@domain/data/models/movie";
 
 describe('MovieService', () => {
   let service: MovieService;
-  let httpClientSpy: { get: jasmine.Spy };
+  let apiServiceSpy: jasmine.SpyObj<ApiService>;
 
   beforeEach(() => {
+    const spy = jasmine.createSpyObj('ApiService', ['get']);
+
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
@@ -28,18 +32,21 @@ describe('MovieService', () => {
             deps: [HttpClient]
           }
         })
+      ],
+      providers: [
+        {provide: ApiService, useValue: spy}
       ]
     });
 
-    httpClientSpy = jasmine.createSpyObj('ApiService', ['get']);
     service = TestBed.inject(MovieService);
+    apiServiceSpy = TestBed.inject(ApiService) as jasmine.SpyObj<ApiService>;
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get users', (done) => {
+  it('should filter movie', (done) => {
     const mockMovieFilter = new MovieFilter();
     mockMovieFilter.query = 'Pottersville';
 
@@ -67,12 +74,85 @@ describe('MovieService', () => {
       ],
       "total_pages": 1,
       "total_results": 1
-    }
+    };
 
-    httpClientSpy.get.and.returnValue(of(mockMovies))
+    apiServiceSpy.get.and.returnValue(of(mockMovies))
 
     service.filter(mockMovieFilter).subscribe(res => {
       expect(res).toEqual(mockMovies);
+      done();
+    });
+  });
+
+
+  it('should get movie', (done) => {
+    const mockIdMovie = 862968;
+
+    const mockMovie = {
+      "adult": false,
+      "backdrop_path": "/bMRofddQE58ToKM7GtdJy6MuKoY.jpg",
+      "belongs_to_collection": null,
+      "budget": 0,
+      "genres": [
+        {
+          "id": 18,
+          "name": "Drama"
+        },
+        {
+          "id": 80,
+          "name": "Crime"
+        }
+      ],
+      "homepage": "https://www.netflix.com/title/81614419",
+      "id": 862968,
+      "imdb_id": "tt15257160",
+      "original_language": "en",
+      "original_title": "Pain Hustlers",
+      "overview": "After losing her job, a single mom falls into a lucrative but ultimately dangerous scheme selling prescription drugs.",
+      "popularity": 97.761,
+      "poster_path": "/m0gM9jE1KmCkXZRqkeNYEQZdVsZ.jpg",
+      "production_companies": [
+        {
+          "id": 159314,
+          "logo_path": null,
+          "name": "Grey Matter Productions",
+          "origin_country": "US"
+        },
+        {
+          "id": 159315,
+          "logo_path": null,
+          "name": "Wychwood Media",
+          "origin_country": ""
+        }
+      ],
+      "production_countries": [
+        {
+          "iso_3166_1": "US",
+          "name": "United States of America"
+        }
+      ],
+      "release_date": "2023-10-20",
+      "revenue": 0,
+      "runtime": 122,
+      "spoken_languages": [
+        {
+          "english_name": "English",
+          "iso_639_1": "en",
+          "name": "English"
+        }
+      ],
+      "status": "Released",
+      "tagline": "An American excess story.",
+      "title": "Pain Hustlers",
+      "video": false,
+      "vote_average": 6.4,
+      "vote_count": 70
+    };
+
+    apiServiceSpy.get.and.returnValue(of(mockMovie))
+
+    service.get(mockIdMovie).subscribe(res => {
+      expect(res).toEqual(mockMovie as Movie);
       done();
     });
   });

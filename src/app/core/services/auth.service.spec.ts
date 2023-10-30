@@ -9,14 +9,6 @@ describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
-
-    spyOn(Object.getPrototypeOf(localStorage), 'getItem').and.callFake((key: string): string => {
-      return storage[key] || null;
-    });
-
-    spyOn(Object.getPrototypeOf(localStorage), 'setItem').and.callFake((key: string, value: string) => {
-      storage[key] = value as string;
-    });
   });
 
   it('should be created', () => {
@@ -25,6 +17,15 @@ describe('AuthService', () => {
 
   it('should save token to local storage', () => {
     const token = 'test-token';
+
+    spyOn(Object.getPrototypeOf(localStorage), 'getItem').and.callFake((key: string): string => {
+      return storage[key] || null;
+    });
+
+    spyOn(Object.getPrototypeOf(localStorage), 'setItem').and.callFake((key: string, value: string) => {
+      storage[key] = value as string;
+    });
+
     service.setToken(token);
     expect(service.getToken()).toEqual(token);
   });
