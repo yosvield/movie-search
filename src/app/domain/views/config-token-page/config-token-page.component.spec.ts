@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ConfigTokenPageComponent} from "@views/config-token-page/config-token-page.component";
 import {SharedModule} from "@shared/shared.module";
 import {ToastrModule} from "ngx-toastr";
-import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "@core/factory";
 import {HttpClient} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
